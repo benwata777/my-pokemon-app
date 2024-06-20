@@ -1,4 +1,4 @@
-.pokemon-info {
+/* .pokemon-info {
   text-align: center;
 }
 
@@ -9,7 +9,8 @@
 
 .pokemon-info h1 {
   margin: 10px 0;
-  color: #3b4cca;
+  color: #ffcb05;
+  text-shadow: 2px 2px #3b4cca;
 }
 
 .pokemon-info p {
@@ -34,4 +35,70 @@
   margin: 5px;
   border-radius: 5px;
   font-size: 16px;
+} */
+.pokemon-info {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.pokemon-info h2 {
+  color: #ffcb05;
+  text-shadow: 2px 2px #3b4cca;
+}
+
+.pokemon-info img {
+  width: 150px;
+  height: 150px;
+}
+
+.pokemon-info h3 {
+  color: #ffcb05;
+}
+
+.pokemon-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.pokemon-info li {
+  margin: 5px 0;
+}
+
+.move {
+  border: 1px solid #3b4cca;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.move h4 {
+  margin: 0;
+  color: #3b4cca;
+}
+
+.move p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.toggle-button {
+  background-color: #f3bb45;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-button.active {
+  background-color: #ee8130;
+}
+
+.toggle;
