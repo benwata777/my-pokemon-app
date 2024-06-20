@@ -171,6 +171,61 @@
 
 // export default App;
 //v4
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import SearchBar from "./components/SearchBar";
+// import PokemonInfo from "./components/PokemonInfo";
+// import "./App.css";
+
+// const App = () => {
+//   const [pokemon, setPokemon] = useState(null);
+//   const [allPokemon, setAllPokemon] = useState([]);
+
+//   useEffect(() => {
+//     const fetchAllPokemon = async () => {
+//       try {
+//         const response = await axios.get(
+//           "https://pokeapi.co/api/v2/pokemon?limit=1000"
+//         );
+//         setAllPokemon(response.data.results);
+//       } catch (error) {
+//         console.error("Error fetching all Pokémon data:", error);
+//       }
+//     };
+
+//     fetchAllPokemon();
+//   }, []);
+
+//   const fetchPokemonData = async (name) => {
+//     try {
+//       const matchedPokemon = allPokemon.find((p) =>
+//         p.name.includes(name.toLowerCase())
+//       );
+//       if (matchedPokemon) {
+//         const response = await axios.get(
+//           `https://pokeapi.co/api/v2/pokemon/${matchedPokemon.name}`
+//         );
+//         setPokemon(response.data);
+//       } else {
+//         setPokemon(null);
+//       }
+//     } catch (error) {
+//       console.error("Error fetching Pokémon data:", error);
+//       setPokemon(null);
+//     }
+//   };
+
+//   return (
+//     <div className="container">
+//       <h1>Pokémon Search</h1>
+//       <SearchBar onSearch={fetchPokemonData} />
+//       <PokemonInfo pokemon={pokemon} />
+//     </div>
+//   );
+// };
+
+// export default App;
+//v5
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SearchBar from "./components/SearchBar";
@@ -220,6 +275,7 @@ const App = () => {
       <h1>Pokémon Search</h1>
       <SearchBar onSearch={fetchPokemonData} />
       <PokemonInfo pokemon={pokemon} />
+      <footer>made by Benwata777</footer>
     </div>
   );
 };
