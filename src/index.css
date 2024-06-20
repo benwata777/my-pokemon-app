@@ -62,6 +62,12 @@ footer {
   color: #ffcb05;
 }
 
+.search-bar .MuiAutocomplete-clearIndicator {
+  font-size: 0.1rem;
+  padding: 6px;
+  border-radius: 20px;
+}
+
 .pokemon-info {
   text-align: center;
 }
