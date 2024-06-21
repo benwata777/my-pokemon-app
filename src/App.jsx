@@ -2,50 +2,59 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SearchBar from "./components/SearchBar";
 import PokemonInfo from "./components/PokemonInfo";
+import pokemonLofi from "./assets/pokemon-lofi-littleroot-town.mp3";
+
 import "./App.css";
 
 const App = () => {
   const [pokemon, setPokemon] = useState(null);
-  const [allPokemon, setAllPokemon] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
-    const fetchAllPokemon = async () => {
+    const fetchPokemonList = async () => {
       try {
         const response = await axios.get(
           "https://pokeapi.co/api/v2/pokemon?limit=1000"
         );
-        const pokemonData = response.data.results.map((pokemon, index) => ({
-          ...pokemon,
-          id: index + 1,
-        }));
-        setAllPokemon(pokemonData);
+        setSuggestions(response.data.results);
       } catch (error) {
-        console.error("Error fetching all Pokémon data:", error);
+        console.error("Error fetching Pokémon list:", error);
       }
     };
 
-    fetchAllPokemon();
+    fetchPokemonList();
   }, []);
 
-  const fetchPokemonData = async (input) => {
-    try {
-      let matchedPokemon;
-      if (!isNaN(input)) {
-        matchedPokemon = allPokemon.find((p) => p.id === parseInt(input));
-      } else {
-        matchedPokemon = allPokemon.find((p) =>
-          p.name.includes(input.toLowerCase())
-        );
-      }
+  useEffect(() => {
+    const audio = new Audio(pokemonLofi);
+    audio.volume = 0.1;
+    audio.loop = true;
+    audio
+      .play()
+      .catch((error) => console.error("Audio playback error:", error));
 
-      if (matchedPokemon) {
-        const response = await axios.get(
-          `https://pokeapi.co/api/v2/pokemon/${matchedPokemon.name}`
-        );
-        setPokemon(response.data);
-      } else {
-        setPokemon(null);
-      }
+    const handleEnded = () => {
+      audio.currentTime = 0;
+      audio
+        .play()
+        .catch((error) => console.error("Audio playback error:", error));
+    };
+
+    audio.addEventListener("ended", handleEnded);
+
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.removeEventListener("ended", handleEnded);
+    };
+  }, []);
+
+  const handleSearch = async (searchTerm) => {
+    try {
+      const response = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${searchTerm.toLowerCase()}`
+      );
+      setPokemon(response.data);
     } catch (error) {
       console.error("Error fetching Pokémon data:", error);
       setPokemon(null);
@@ -53,10 +62,10 @@ const App = () => {
   };
 
   return (
-    <div className="container">
+    <div className="app">
       <h1>Pokémon Search</h1>
-      <SearchBar suggestions={allPokemon} onSearch={fetchPokemonData} />
-      <PokemonInfo pokemon={pokemon} />
+      <SearchBar suggestions={suggestions} onSearch={handleSearch} />
+      <PokemonInfo pokemon={pokemon} onPokemonClick={handleSearch} />
       <footer>made by Benwata777</footer>
     </div>
   );
