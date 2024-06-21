@@ -7,7 +7,9 @@ const SearchBar = ({ suggestions, onSearch }) => {
   const [value, setValue] = useState("");
 
   const handleSearch = () => {
-    onSearch(value);
+    if (value) {
+      onSearch(value);
+    }
   };
 
   return (

@@ -7,20 +7,3 @@
 .search-bar .MuiTextField-root {
   width: 300px;
 }
-
-/* .search-bar button {
-  padding: 10px 20px;
-  background-color: #ffcb05;
-  border: none;
-  border-radius: 5px;
-  color: #3b4cca;
-  font-size: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-left: 10px;
-}
-
-.search-bar button:hover {
-  background-color: #3b4cca;
-  color: #ffcb05;
-} */
